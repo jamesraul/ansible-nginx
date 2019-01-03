@@ -1,6 +1,8 @@
 #!/bin/bash
 echo "apt-get update"
 sudo apt-get update
+echo "install pip"
+sudo apt-get install pip
 echo "update pip"
 pip install --upgrade pip
 echo "installing ansile"
