@@ -1,0 +1,18 @@
+# Playbook to install nginx to dummy openstack nodes
+- hosts: localhost
+  become: true
+  roles:
+    - jdauphant.nginx
+  # Create sites and listen on eth0, eth99 and bond0 interfaces
+  vars:
+    nginx_sites:
+      "{{ ansible_all_ipv4_addresses[0] }}":
+        - listen "{{ ansible_all_ipv4_addresses[0] }}:80"
+        - server_name "{{ ansible_fqdn }}"
+        - root "/usr/share/nginx/html"
+        - index {{ ansible_all_ipv4_addresses[0] }}.html
+  post_tasks:
+    # Write interface names and ip to each site
+    - shell: >
+        ip a | grep {{ item }} > "/usr/share/nginx/html/{{ item }}.html"
+      with_items: "{{ ansible_all_ipv4_addresses }}"
