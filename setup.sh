@@ -1,5 +1,5 @@
 #!/bin/bash
-ecvho "update pip"
+echo "update pip"
 pip install --upgrade pip
 echo "installing ansile"
 sudo pip install ansible
