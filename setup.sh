@@ -2,7 +2,7 @@
 echo "apt-get update"
 sudo apt-get update
 echo "install pip"
-sudo apt install python-pip
+sudo apt install -y python-pip
 echo "update pip"
 pip install --upgrade pip
 echo "installing ansile"
